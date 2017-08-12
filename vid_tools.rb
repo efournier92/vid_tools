@@ -6,6 +6,10 @@ def get_movie_duration video_file
 
   # Find the duration in the output, and force a return if it's found
   duration = /duration: ([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{2})/i.match(ffmpeg_output) { |m| return m[1] }
+
+    binding.pry
+  # If it didn't get a match, something is wrong. Log the error
+  return "FFMPEG ERROR"
 end
 
 def get_vid_duration file_path
