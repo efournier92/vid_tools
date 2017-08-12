@@ -1,7 +1,11 @@
 
 
 def get_movie_duration video_file
+  # Run ffmpeg on the video, and do it silently
+  ffmpeg_output = `ffmpeg -i #{video_file} 2>&1`
 
+  # Find the duration in the output, and force a return if it's found
+  duration = /duration: ([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{2})/i.match(ffmpeg_output) { |m| return m[1] }
 end
 
 def get_vid_duration file_path
