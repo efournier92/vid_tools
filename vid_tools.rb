@@ -21,6 +21,7 @@ def write_concat_files video_file
         end
       end
       out_file.close
+    end
   end
 end
 
