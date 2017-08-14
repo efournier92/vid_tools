@@ -1,4 +1,9 @@
 
+
+def get_dir_duration
+
+end
+
 def write_concat_files video_file
   directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/EP/'
   out_directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/EP/ls'
