@@ -2,9 +2,29 @@
 
 def get_dir_duration
   video_file_len = get_movie_duration(video_file)
+
   directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/EP/'
   ep_folders = Dir.entries(directory)
 
+  ep_folders.each do |folder|
+    if folder != '.' && folder != '..' 
+      ep_duration = 0
+      ep_directory = "#{directory}#{folder}"
+      files = Dir.entries(ep_directory)
+
+      files.each do |file|
+        if file != '.' && file != '..'
+          file_path = "#{directory}#{folder}/#{file}"
+          file_path = Shellwords.escape(file_path)
+
+          file_duration = get_vid_duration(file_path)
+          ep_duration = ep_duration + file_duration
+          # binding.pry
+        end
+      end
+      puts "#{folder}: #{ep_duration}"
+    end
+  end
 end
 
 def write_concat_files video_file
