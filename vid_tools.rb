@@ -1,6 +1,9 @@
 
 
 def get_dir_duration
+  video_file_len = get_movie_duration(video_file)
+  directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/EP/'
+  ep_folders = Dir.entries(directory)
 
 end
 
