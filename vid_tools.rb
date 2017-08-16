@@ -22,6 +22,7 @@ def get_dir_duration
           # binding.pry
         end
       end
+      puts "#{folder}: #{ep_duration}"
     end
   end
 end
