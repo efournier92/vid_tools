@@ -1,18 +1,6 @@
 
 def spread_vids
 end
-# directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/'
-# files = Dir.entries(directory)
-# counter = 1
-
-# files.each do |file|
-#   if file != "." && file != ".." && file != "EP" && file != "FULL"
-#     binding.pry
-#     FileUtils.mv("#{directory}/#{file}", "#{directory}EP/#{'%02d' % counter}/#{file}")
-#     counter += 1
-#     counter = 1 if counter == 21
-#   end
-# end
 
 def get_dir_duration
   video_file_len = get_movie_duration(video_file)
