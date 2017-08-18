@@ -1,4 +1,18 @@
 
+def spread_vids
+end
+# directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/'
+# files = Dir.entries(directory)
+# counter = 1
+
+# files.each do |file|
+#   if file != "." && file != ".." && file != "EP" && file != "FULL"
+#     binding.pry
+#     FileUtils.mv("#{directory}/#{file}", "#{directory}EP/#{'%02d' % counter}/#{file}")
+#     counter += 1
+#     counter = 1 if counter == 21
+#   end
+# end
 
 def get_dir_duration
   video_file_len = get_movie_duration(video_file)
@@ -65,6 +79,7 @@ def get_movie_duration video_file
   return "FFMPEG ERROR"
 end
 
+video_file = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/Anne\ Murray\ -\ You\ Needed\ Me-e6nfpxZ2Nz4.mp4'
 def get_vid_duration file_path
   string = get_movie_duration(file_path)
 
