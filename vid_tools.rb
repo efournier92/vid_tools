@@ -1,5 +1,8 @@
-
 def spread_vids
+  directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/'
+  files = Dir.entries(directory)
+  counter = 1
+
 end
 
 def get_dir_duration
