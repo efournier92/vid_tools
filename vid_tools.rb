@@ -3,6 +3,14 @@ def spread_vids
   files = Dir.entries(directory)
   counter = 1
 
+  files.each do |file|
+    if file != "." && file != ".." && file != "EP" && file != "FULL"
+      binding.pry
+      FileUtils.mv("#{directory}/#{file}", "#{directory}EP/#{'%02d' % counter}/#{file}")
+      counter += 1
+      counter = 1 if counter == 21
+    end
+  end
 end
 
 def get_dir_duration
