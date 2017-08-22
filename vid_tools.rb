@@ -76,9 +76,17 @@ def get_movie_duration video_file
   # Find the duration in the output, and force a return if it's found
   duration = /duration: ([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{2})/i.match(ffmpeg_output) { |m| return m[1] }
 
-  binding.pry
-  # If it didn't get a match, something is wrong. Log the error
+  # Log error if no match
   return "FFMPEG ERROR"
+
+  hours = string[0,2].to_i
+  minutes = string[3,2].to_i
+  seconds = string[6,2].to_i
+
+  total_seconds = 0
+  total_seconds = seconds + (minutes * 60) + (hours * 360)
+  total_minutes = total_seconds / 60
+
 end
 
 video_file = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/Anne\ Murray\ -\ You\ Needed\ Me-e6nfpxZ2Nz4.mp4'
