@@ -1,3 +1,6 @@
+require 'pry'
+require 'fileutils'
+
 def spread_vids
   directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/'
   files = Dir.entries(directory)
