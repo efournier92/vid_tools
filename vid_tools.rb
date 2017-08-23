@@ -1,6 +1,12 @@
 require 'pry'
 require 'fileutils'
 
+mode = ""
+until mode == '1' || mode == '2' || mode == '3' do
+  puts "SELECT MODE:\n  1) Get Dir Duration\n  2) Spread Files\n  3) Write Concats "
+  mode = gets.chomp
+end
+
 def spread_vids
   directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/'
   files = Dir.entries(directory)
