@@ -1,19 +1,22 @@
 require 'pry'
 require 'fileutils'
 
-mode = ""
-until mode == '1' || mode == '2' || mode == '3' do
-  puts "SELECT MODE:\n  1) Get Dir Duration\n  2) Spread Files\n  3) Write Concats "
-  mode = gets.chomp
+def valid_folder? folder_name
+  if folder_name.start_with?('.')
+    false
+  elsif folder_name == 'EP' || folder_name == 'FULL'
+    false
+  else
+    true
+  end
 end
 
 def spread_vids
   directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/'
   files = Dir.entries(directory)
   counter = 1
-
   files.each do |file|
-    if file != "." && file != ".." && file != "EP" && file != "FULL"
+    if valid_folder? file
       binding.pry
       FileUtils.mv("#{directory}/#{file}", "#{directory}EP/#{'%02d' % counter}/#{file}")
       counter += 1
@@ -23,13 +26,11 @@ def spread_vids
 end
 
 def get_dir_duration
-  video_file_len = get_movie_duration(video_file)
-
   directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/EP/'
   ep_folders = Dir.entries(directory)
 
   ep_folders.each do |folder|
-    if folder != '.' && folder != '..' 
+    if valid_folder? folder
       ep_duration = 0
       ep_directory = "#{directory}#{folder}"
       files = Dir.entries(ep_directory)
@@ -107,4 +108,14 @@ def get_vid_duration file_path
   total_seconds = seconds + (minutes * 60) + (hours * 360)
   total_minutes = total_seconds / 60
 end
+
+mode = ""
+until mode == '1' || mode == '2' || mode == '3' do
+  print "SELECT MODE:\n  1) Get Dir Duration\n  2) Spread Files\n  3) Write Concats\n>> "
+  mode = gets.chomp
+end
+
+get_dir_duration   if mode == '1'
+spread_vids        if mode == '2'
+write_concat_files if mode == '3'
 
