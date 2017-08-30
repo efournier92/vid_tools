@@ -17,7 +17,6 @@ def spread_vids
   counter = 1
   files.each do |file|
     if valid_folder? file
-      binding.pry
       FileUtils.mv("#{directory}/#{file}", "#{directory}EP/#{'%02d' % counter}/#{file}")
       counter += 1
       counter = 1 if counter == 21
@@ -26,23 +25,22 @@ def spread_vids
 end
 
 def get_dir_duration
-  directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/EP/'
+  directory = '/Volumes/M_EXTENDED/PRJTS/Opry/FINAL'
   ep_folders = Dir.entries(directory)
 
   ep_folders.each do |folder|
     if valid_folder? folder
       ep_duration = 0
-      ep_directory = "#{directory}#{folder}"
+      ep_directory = "#{directory}/#{folder}"
       files = Dir.entries(ep_directory)
 
       files.each do |file|
         if file != '.' && file != '..'
-          file_path = "#{directory}#{folder}/#{file}"
+          file_path = "#{directory}/#{folder}/#{file}"
           file_path = Shellwords.escape(file_path)
 
-          file_duration = get_vid_duration(file_path)
+          file_duration = get_movie_duration(file_path)
           ep_duration = ep_duration + file_duration
-          # binding.pry
         end
       end
       puts "#{folder}: #{ep_duration}"
@@ -67,8 +65,6 @@ def write_concat_files video_file
           file_path = Shellwords.escape(file_path)
 
           out_file.puts("file #{file_path}")
-
-          # binding.pry
         end
       end
       out_file.close
@@ -81,22 +77,22 @@ def get_movie_duration video_file
   ffmpeg_output = `ffmpeg -i #{video_file} 2>&1`
 
   # Find the duration in the output, and force a return if it's found
-  duration = /duration: ([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{2})/i.match(ffmpeg_output) { |m| return m[1] }
+  timestamp = /duration: ([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{2})/i.match(ffmpeg_output)
+  if timestamp && !File.directory?(video_file)
+    timestamp = timestamp[1] 
 
-  # Log error if no match
-  return "FFMPEG ERROR"
+    hours = timestamp[0,2].to_i
+    minutes = timestamp[3,2].to_i
+    seconds = timestamp[6,2].to_i
 
-  hours = string[0,2].to_i
-  minutes = string[3,2].to_i
-  seconds = string[6,2].to_i
-
-  total_seconds = 0
-  total_seconds = seconds + (minutes * 60) + (hours * 360)
-  total_minutes = total_seconds / 60
-
+    total_seconds = 0.00
+    total_seconds = seconds + (minutes * 60) + (hours * 360)
+    total_minutes = total_seconds / 60
+  end
 end
 
 video_file = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/Anne\ Murray\ -\ You\ Needed\ Me-e6nfpxZ2Nz4.mp4'
+
 def get_vid_duration file_path
   string = get_movie_duration(file_path)
 
