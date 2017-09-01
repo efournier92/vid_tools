@@ -49,9 +49,9 @@ def get_dir_duration
 end
 
 def write_concat_files video_file
-  directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/EP/'
-  out_directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/EP/ls'
-  ep_folders = Dir.entries(directory)
+  directory     = '/Volumes/M_EXTENDED/PRJTS/Opry/FINAL'
+  out_directory = '/Volumes/M_EXTENDED/PRJTS/Opry/FINAL/ls'
+  ep_folders    = Dir.entries(directory)
 
   ep_folders.each do |folder|
     if folder != '.' && folder != '..' 
@@ -90,8 +90,6 @@ def get_movie_duration video_file
     total_minutes = total_seconds / 60
   end
 end
-
-video_file = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/Anne\ Murray\ -\ You\ Needed\ Me-e6nfpxZ2Nz4.mp4'
 
 def get_vid_duration file_path
   string = get_movie_duration(file_path)
