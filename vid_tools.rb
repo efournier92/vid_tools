@@ -81,7 +81,7 @@ def get_movie_duration video_file
   if timestamp && !File.directory?(video_file)
     timestamp = timestamp[1] 
 
-    hours = timestamp[0,2].to_i
+    hours   = timestamp[0,2].to_i
     minutes = timestamp[3,2].to_i
     seconds = timestamp[6,2].to_i
 
