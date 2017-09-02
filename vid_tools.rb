@@ -48,8 +48,8 @@ def get_dir_duration
   end
 end
 
-def write_concat_files video_file
-  directory     = '/Volumes/M_EXTENDED/PRJTS/Opry/FINAL'
+def write_concat_files
+  directory     = '/Volumes/M_EXTENDED/PRJTS/Opry/FINAL/'
   out_directory = '/Volumes/M_EXTENDED/PRJTS/Opry/FINAL/ls'
   ep_folders    = Dir.entries(directory)
 
