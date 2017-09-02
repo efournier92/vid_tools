@@ -15,7 +15,6 @@ def spread_vids
   directory = '/Volumes/M_EXTENDED/PRJTS/Opry/GD/'
   files = Dir.entries(directory)
   counter = 1
-
   files.each do |file|
     if valid_folder? file
       FileUtils.mv("#{directory}/#{file}", "#{directory}EP/#{'%02d' % counter}/#{file}")
